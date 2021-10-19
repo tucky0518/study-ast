@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 试输出斐波那契数列的前十项,即1,1,2,3,5,8,13,21,34,55
+
+      // 缓存对象
+      var cache = {};
+
+      // 创建一个函数,功能是返回下标为n的这项的数字
+      function fib(n) {
+        console.count('计数');
+        console.log('现在进入了fib函数', n);
+
+        // 判断缓存对象中有没有这个值,如果有,直接用
+        if (cache.hasOwnProperty(n)) {
+          console.log('命中缓存,不用计算了,直接用');
+          return cache[n];
+        }
+
+        // 缓存对象没有这个值
+        // 看下标n是不是0或者1,如果是,返回常数1,如果不是,就递归
+        // return n == 0 || n == 1 ? 1 : fib(n - 1) + fib(n - 2);
+        var v = n == 0 || n == 1 ? 1 : fib(n - 1) + fib(n - 2);
+        // 写入缓存,也就是说,每算一个值,就要把这个值存入缓存对象
+        cache[n] = v;
+        return v;
+      }
+
+      console.log(fib(7));
+      for (let i = 0; i <= 9; i++) {
+        console.log(fib(i));
+        console.log(cache);
+      }
+    </script>
+  </body>
+</html>
